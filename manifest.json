@@ -58,6 +58,16 @@
                     "fr": "Avez-vous besoin d'une base de données MySQL ?"
                 },
                 "default": false
+            },
+            {
+                "name": "language",
+                "type": "string",
+                "ask": {
+                    "en": "Select default language",
+                    "fr": "Definir la langue par defaut"
+                },
+                "choices": ["de", "en", "es", "fr", "it", "pt"],
+                "default": "fr"
             }
         ]
     }
