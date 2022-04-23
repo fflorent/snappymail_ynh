@@ -113,14 +113,24 @@ ynh_add_fpm_config
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-# ynh_script_progression --message="Adding a configuration file..." --weight=1
+ynh_script_progression --message="Adding a configuration file..." --weight=1
 
-# mkdir -p "$final_path/data/_data_/_default_/configs/"
+mkdir -p "$final_path/data/_data_/_default_/configs/"
 
-# ynh_add_config --template="../conf/application.ini" --destination="$final_path/data/_data_/_default_/configs/application.ini"
+ynh_add_config --template="../conf/application.ini" --destination="$final_path/data/_data_/_default_/configs/application.ini"
 
-# chmod 450 "$final_path/data/_data_/_default_/configs/application.ini"
-# chown $app:$app "$final_path/data/_data_/_default_/configs/application.ini"
+chmod 450 "$final_path/data/_data_/_default_/configs/application.ini"
+chown $app:$app "$final_path/data/_data_/_default_/configs/application.ini"
+
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+
+# Set permissions to app files
+find $final_path/. -type d -exec chmod 755 {} \;
+find $final_path/. -type f -exec chmod 644 {} \;
+chmod -R o-rwx $final_path
+chown -R $app:www-data $final_path
 
 #=================================================
 # GENERIC FINALIZATION
